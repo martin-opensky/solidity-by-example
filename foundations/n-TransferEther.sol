@@ -37,3 +37,19 @@ contract Payable {
         require(success, "Failed to send Ether");
     }
 }
+
+contract Charity {
+    address public owner;
+
+    constructor() {
+        owner = msg.sender;
+    }
+
+    function donate() public payable {}
+
+    function withdraw() public {
+        uint balance = address(this).balance;
+
+        owner.call{value: balance}("");
+    } 
+}
