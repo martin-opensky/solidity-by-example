@@ -1,3 +1,4 @@
+
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.10;
 
@@ -36,20 +37,4 @@ contract Payable {
         (bool success, ) = _to.call{value: _amount}("");
         require(success, "Failed to send Ether");
     }
-}
-
-contract Charity {
-    address public owner;
-
-    constructor() {
-        owner = msg.sender;
-    }
-
-    function donate() public payable {}
-
-    function withdraw() public returns (bool success) {
-        uint balance = address(this).balance;
-
-        (success, ) = owner.call{value: balance}("");
-    } 
 }
